@@ -1,7 +1,6 @@
 FROM tomcat:9-jre8
 
-ENV CAMUNDA_VERSION "7.9.0-SNAPSHOT"
-ENV CAMUNDA_V 7.9.0
+ENV CAMUNDA_VERSION 7.11.0
 ENV SERVER tomcat
 ENV DATABASE postgres
 ENV LIB_DIR ${CATALINA_HOME}/lib/
@@ -12,9 +11,9 @@ ENV SERVER_CONFIG ${CATALINA_HOME}/conf/server.xml
 ENV WEBAPP_DIR ${CATALINA_HOME}/webapps
 ENV SQL_CREATE_ENGINE /tmp/sql/create/${DATABASE}_engine_${CAMUNDA_VERSION}.sql
 ENV SQL_CREATE_IDENTITY /tmp/sql/create/${DATABASE}_identity_${CAMUNDA_VERSION}.sql
-ENV NEXUS https://app.camunda.com/nexus/service/local/artifact/maven/redirect
-ENV MAIL_CONNECTOR https://app.camunda.com/nexus/service/local/repositories/camunda-bpm-community-extensions/content/org/camunda/bpm/extension/camunda-bpm-mail-core/1.0.0/camunda-bpm-mail-core-1.0.0.jar
-ENV JAVA_MAIL http://java.net/projects/javamail/downloads/download/javax.mail.jar
+ENV NEXUS https://app.camunda.com/nexus/repository
+ENV MAIL_CONNECTOR ${NEXUS}/camunda-bpm-community-extensions/org/camunda/bpm/extension/camunda-bpm-mail-core/1.2.0/camunda-bpm-mail-core-1.2.0.jar
+ENV JAVA_MAIL https://github.com/javaee/javamail/releases/download/JAVAMAIL-1_6_2/javax.mail.jar
 
 #install xmlstarlet, postgresql, and netcat
 RUN apt-get update && \
@@ -23,8 +22,7 @@ RUN apt-get update && \
     rm -rf /var/cache/* /var/lib/apt/lists/*
 
 # add camunda tomcat distro
-#ADD ${NEXUS}?r=camunda-bpm&g=org.camunda.bpm.tomcat&a=camunda-bpm-tomcat&v=${CAMUNDA_VERSION}&e=tar.gz /tmp/camunda-tomcat.tar.gz
-COPY ./dependencies/camunda-bpm-tomcat-${CAMUNDA_VERSION}.tar.gz /tmp/camunda-tomcat.tar.gz
+ADD ${NEXUS}/camunda-bpm/org/camunda/bpm/tomcat/camunda-bpm-tomcat/${CAMUNDA_VERSION}/camunda-bpm-tomcat-${CAMUNDA_VERSION}.tar.gz /tmp/camunda-tomcat.tar.gz
 
 # unpack camunda libraries
 RUN tar xzf /tmp/camunda-tomcat.tar.gz lib/ -C ${LIB_DIR}
@@ -39,9 +37,7 @@ ADD ${JAVA_MAIL} ${LIB_DIR}
 ADD conf/mail-configuration.properties ${MAIL_CONFIG}
     
 # add camunda engine REST API
-#ADD ${NEXUS}?r=camunda-bpm&g=org.camunda.bpm&a=camunda-engine-rest&v=${CAMUNDA_VERSION}&e=war&c=${SERVER} ${WEBAPP_DIR}/engine-rest.war
-COPY ./dependencies/camunda-engine-rest-${CAMUNDA_VERSION}-tomcat.war ${WEBAPP_DIR}/engine-rest.war
-
+ADD ${NEXUS}/camunda-bpm/org/camunda/bpm/camunda-engine-rest/${CAMUNDA_VERSION}/camunda-engine-rest-${CAMUNDA_VERSION}-tomcat.war ${WEBAPP_DIR}/engine-rest.war
 
 # extract REST API war
 RUN unzip ${WEBAPP_DIR}/engine-rest.war -d ${WEBAPP_DIR}/engine-rest
@@ -62,7 +58,7 @@ ADD conf/server.xml ${SERVER_CONFIG}
 ADD bin/* /usr/local/bin/
 
 # add database drivers
-RUN /usr/local/bin/download-database-drivers.sh "https://app.camunda.com/nexus/content/repositories/camunda-bpm/org/camunda/bpm/camunda-database-settings/${CAMUNDA_V}/camunda-database-settings-${CAMUNDA_V}.pom"
+RUN /usr/local/bin/download-database-drivers.sh "${NEXUS}/camunda-bpm/org/camunda/bpm/camunda-database-settings/${CAMUNDA_VERSION}/camunda-database-settings-${CAMUNDA_VERSION}.pom"
 
 WORKDIR /tmp
 

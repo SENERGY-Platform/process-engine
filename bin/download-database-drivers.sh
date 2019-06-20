@@ -14,9 +14,8 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-set -e
+echo "Download database drivers"
 
-POM="$(wget -O- $1)"
-POSTGRESQL_VERSION=$(echo $POM | xmlstarlet sel -t -v //_:version.postgresql)
+wget -O ${LIB_DIR}/postgresql.jar "${NEXUS}/public/postgresql/postgresql/9.4.1208-jdbc42-atlassian-hosted/postgresql-9.4.1208-jdbc42-atlassian-hosted.jar"
 
-wget -O ${LIB_DIR}/postgresql-${POSTGRESQL_VERSION}.jar "${NEXUS}?r=public&g=org.postgresql&a=postgresql&v=${POSTGRESQL_VERSION}&p=jar"
+echo "Download database drivers finished"

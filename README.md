@@ -1,9 +1,6 @@
-# SEPL BPM Engine
+# Process Engine
 
-SEPL BPM engine standalone server based on Apache Tomcat and Camunda BPM Platform with integrated RESTful API
-
-## Camunda
-the camunda dependency is replaced with a fork which fixes a bug (github.com/IngoRoessner/camunda-bpm-platform)
+Process engine standalone server based on Apache Tomcat and Camunda BPM Platform with integrated RESTful API
 
 ## Usage
 

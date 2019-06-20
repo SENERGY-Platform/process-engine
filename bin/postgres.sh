@@ -14,18 +14,16 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-export PGPASSWORD=${DB_PASSWORD}
+set -e
 
-echo ">> Waiting for postgres to start"
-    WAIT=0
-    while ! nc -z ${DB_HOST} ${DB_PORT}; do
-      sleep 1
-      WAIT=$(($WAIT + 1))
-      if [ "$WAIT" -gt 15 ]; then
-        echo "Error: Timeout wating for Postgres to start"
-        exit 1
-      fi
-    done
+until PGPASSWORD="${DB_PASSWORD}" psql -h "${DB_HOST}" -p "${DB_PORT}" -U "${DB_USERNAME}" -d "${DB_NAME}" -c '\q'; do
+  >&2 echo "Postgres is unavailable - sleeping"
+  sleep 1
+done
+
+>&2 echo "Postgres is up"
+
+export PGPASSWORD=${DB_PASSWORD}
 
 echo "CREATE ENGINE TABLES"
 psql -h ${DB_HOST} -p ${DB_PORT} -U ${DB_USERNAME} -d ${DB_NAME} -f ${SQL_CREATE_ENGINE}
