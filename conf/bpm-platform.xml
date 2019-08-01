@@ -33,9 +33,9 @@
             </properties>
         </job-acquisition>
         <properties>
-            <property name="queueSize">3</property>
-            <property name="corePoolSize">3</property>
-            <property name="maxPoolSize">10</property>
+            <property name="queueSize">6</property>
+            <property name="corePoolSize">6</property>
+            <property name="maxPoolSize">20</property>
             <property name="keepAliveTime">0</property>
         </properties>
     </job-executor>
