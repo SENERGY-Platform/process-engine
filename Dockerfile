@@ -11,6 +11,7 @@ RUN rm -rf /camunda/webapps/host-manager
 RUN rm -rf /camunda/webapps/manager
 
 COPY conf/bpm-platform.xml /camunda/conf/bpm-platform.xml
+COPY conf/server.xml /camunda/conf/server.xml
 
 ENV LIB_DIR ${CATALINA_HOME}/lib/
 ENV BIN_DIR ${CATALINA_HOME}/bin/
