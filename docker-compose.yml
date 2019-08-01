@@ -2,6 +2,7 @@ version: '3'
 services:
   senergy-bpm:
     build: .
+    #image: camunda/camunda-bpm-platform:tomcat-7.11.0
     environment:
       # Set database configuration
       - DB_DRIVER=org.postgresql.Driver
@@ -11,6 +12,7 @@ services:
       - DB_HOST=db
       - DB_PORT=5432
       - DB_NAME=camunda
+      - WAIT_FOR=db:5432
       # Set credentials for smtp server
       - GMAIL_USER=user@gmail.com
       - GMAIL_PW=password
