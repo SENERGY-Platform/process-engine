@@ -78,9 +78,7 @@
                   minIdle="89"
                   timeBetweenEvictionRunsMillis="34000"
                   minEvictableIdleTimeMillis="55000"
-                  validationQuery="SELECT 1"
                   validationInterval="34000"
-                  testOnBorrow="true"
                   removeAbandoned="true"
                   removeAbandonedTimeout="55" />
 
