@@ -13,6 +13,10 @@ RUN rm -rf /camunda/webapps/manager
 COPY conf/bpm-platform.xml /camunda/conf/bpm-platform.xml
 COPY conf/server.xml /camunda/conf/server.xml
 
+USER root
+RUN chmod o+w /camunda/conf/server.xml
+USER camunda
+
 ENV LIB_DIR ${CATALINA_HOME}/lib/
 ENV BIN_DIR ${CATALINA_HOME}/bin/
 ENV MAIL_CONFIG ${BIN_DIR}mail-configuration.properties
