@@ -11,7 +11,8 @@ RUN rm -rf /camunda/webapps/host-manager
 RUN rm -rf /camunda/webapps/manager
 
 COPY conf/bpm-platform.xml /camunda/conf/bpm-platform.xml
-COPY conf/server.xml /camunda/conf/server.xml
+COPY conf/server.xml /camunda/conf/server_temp.xml
+COPY conf/startup.sh /camunda/senergy_startup.sh
 
 USER root
 RUN chmod o+w /camunda/conf/server.xml
@@ -32,3 +33,5 @@ ADD ${JAVA_MAIL} ${LIB_DIR}
 
 # add mail configurations
 ADD conf/mail-configuration.properties ${MAIL_CONFIG}
+
+CMD ["./senergy_startup.sh"]
