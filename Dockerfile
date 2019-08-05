@@ -16,6 +16,7 @@ COPY conf/startup.sh /camunda/senergy_startup.sh
 
 USER root
 RUN chmod o+w /camunda/conf/server.xml
+RUN chmod o+x /camunda/senergy_startup.sh
 USER camunda
 
 ENV LIB_DIR ${CATALINA_HOME}/lib/
