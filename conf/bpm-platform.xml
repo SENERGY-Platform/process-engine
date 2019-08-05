@@ -22,7 +22,7 @@
     <job-executor>
         <job-acquisition name="default" >
             <properties>
-                <property name="maxJobsPerAcquisition">3</property>
+                <property name="maxJobsPerAcquisition">4</property>
                 <property name="lockTimeInMillis">300000</property>
                 <property name="waitTimeInMillis">5000</property>
                 <property name="maxWait">60000</property>
