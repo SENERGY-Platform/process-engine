@@ -49,7 +49,7 @@
             <property name="history">activity</property>
             <property name="databaseSchemaUpdate">true</property>
             <property name="authorizationEnabled">true</property>
-            <property name="jobExecutorDeploymentAware">true</property>
+            <property name="jobExecutorDeploymentAware">false</property>
         </properties>
 
         <plugins>
