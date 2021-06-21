@@ -1,4 +1,4 @@
-FROM openjdk:8u212-jre-alpine3.9 as builder
+FROM arm32v7/openjdk as builder
 
 ARG VERSION=7.12.0
 ARG DISTRO=tomcat
@@ -8,12 +8,12 @@ ARG EE=false
 ARG USER
 ARG PASSWORD
 
-RUN apk add --no-cache \
-        ca-certificates \
-        maven \
-        tar \
-        wget \
-        xmlstarlet
+RUN apt-get update && apt-get install -y \
+    ca-certificates \
+    maven \
+    tar \
+    wget \
+    xmlstarlet
 
 COPY arminstall/settings.xml arminstall/download.sh arminstall/camunda-tomcat.sh arminstall/camunda-wildfly.sh  /tmp/
 
