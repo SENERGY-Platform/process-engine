@@ -16,6 +16,8 @@ services:
       # Set credentials for smtp server
       - GMAIL_USER=user@gmail.com
       - GMAIL_PW=password
+      # Set camunda api credentials
+      #- CAMUNDA_APP_PASSWORD=testpw
     links:
       - db
     ports:
