@@ -15,6 +15,7 @@ COPY conf/server.xml /camunda/conf/server_temp.xml
 COPY conf/tomcat-users.xml /camunda/conf/tomcat-users_templ.xml
 COPY conf/web.xml /camunda/conf/web_templ.xml
 COPY conf/web_without_auth.xml /camunda/conf/web_without_auth.xml
+COPY conf/logging.properties /camunda/conf/logging.properties
 COPY conf/startup.sh /camunda/senergy_startup.sh
 
 USER root
@@ -23,6 +24,7 @@ RUN chmod a+rw /camunda/conf/server_temp.xml
 RUN chmod a+rw /camunda/conf/tomcat-users_templ.xml
 RUN chmod a+rw /camunda/conf/web_templ.xml
 RUN chmod a+rw /camunda/conf/web_without_auth.xml
+RUN chmod a+rw /camunda/conf/logging.properties
 RUN chmod a+x /camunda/senergy_startup.sh
 USER camunda
 
