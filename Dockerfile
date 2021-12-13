@@ -28,6 +28,7 @@ RUN chmod a+rw /camunda/conf/logging.properties
 RUN chmod a+x /camunda/senergy_startup.sh
 USER camunda
 
+ENV JAVA_TOOL_OPTIONS="-Dlog4j.formatMsgNoLookups=true"
 ENV LIB_DIR /camunda/lib/
 ENV BIN_DIR /camunda/bin/
 ENV MAIL_CONFIG ${BIN_DIR}mail-configuration.properties
