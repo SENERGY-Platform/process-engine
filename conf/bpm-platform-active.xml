@@ -50,6 +50,7 @@
             <property name="databaseSchemaUpdate">true</property>
             <property name="authorizationEnabled">true</property>
             <property name="jobExecutorDeploymentAware">false</property>
+            <property name="jobExecutorActivate">true</property>
         </properties>
 
         <plugins>

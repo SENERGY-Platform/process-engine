@@ -10,7 +10,8 @@ RUN rm -rf /camunda/webapps/h2
 RUN rm -rf /camunda/webapps/host-manager
 RUN rm -rf /camunda/webapps/manager
 
-COPY conf/bpm-platform.xml /camunda/conf/bpm-platform.xml
+COPY conf/bpm-platform-active.xml /camunda/conf/bpm-platform-active.xml
+COPY conf/bpm-platform-inactive.xml /camunda/conf/bpm-platform-inactive.xml
 COPY conf/server.xml /camunda/conf/server_temp.xml
 COPY conf/tomcat-users.xml /camunda/conf/tomcat-users_templ.xml
 COPY conf/web.xml /camunda/conf/web_templ.xml

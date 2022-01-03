@@ -19,7 +19,17 @@ else
   sed -i -e "s/CAMUNDA_APP_PASSWORD/$CAMUNDA_APP_PASSWORD/g" /camunda/conf/tomcat-users.xml
 fi
 
-
+rm -f /camunda/conf/bpm-platform.xml
+if [[ -z "${ACTIVE_JOB_EXECUTER}" ]]; then
+  ACTIVE_JOB_EXECUTER="true"
+fi
+if [ "${ACTIVE_JOB_EXECUTER}" = "true" ]; then
+  echo "use active job executer"
+  cp /camunda/conf/bpm-platform-active.xml /camunda/conf/bpm-platform.xml
+else
+  echo "use inactive job executer"
+  cp /camunda/conf/bpm-platform-inactive.xml /camunda/conf/bpm-platform.xml
+fi
 
 
 
