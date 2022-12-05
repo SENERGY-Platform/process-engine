@@ -1,4 +1,4 @@
-FROM camunda/camunda-bpm-platform:tomcat-7.11.0
+FROM camunda/camunda-bpm-platform:tomcat-7.18.0
 
 RUN rm -rf /camunda/webapps/ROOT
 RUN rm -rf /camunda/webapps/camunda
@@ -33,7 +33,7 @@ ENV LIB_DIR /camunda/lib/
 ENV BIN_DIR /camunda/bin/
 ENV MAIL_CONFIG ${BIN_DIR}mail-configuration.properties
 ENV MAIL_CONFIG_TEMPL ${BIN_DIR}mail-configuration.properties.templ
-ENV NEXUS https://app.camunda.com/nexus/repository
+ENV NEXUS https://artifacts.camunda.com/artifactory
 ENV MAIL_CONNECTOR ${NEXUS}/camunda-bpm-community-extensions/org/camunda/bpm/extension/camunda-bpm-mail-core/1.2.0/camunda-bpm-mail-core-1.2.0.jar
 ENV JAVA_MAIL https://github.com/javaee/javamail/releases/download/JAVAMAIL-1_6_2/javax.mail.jar
 
