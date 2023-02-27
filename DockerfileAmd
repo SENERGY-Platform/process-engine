@@ -53,6 +53,9 @@ RUN chmod a+r /camunda/lib/camunda-bpm-mail-core-1.2.0.jar
 RUN chmod a+r /camunda/lib/javax.mail.jar
 RUN chmod a+rw ${MAIL_CONFIG}
 RUN chmod a+rw ${MAIL_CONFIG_TEMPL}
+
+RUN ln -sf /proc/self/fd/1 /camunda/logs/camunda_access_log.txt
+
 USER camunda
 
 
