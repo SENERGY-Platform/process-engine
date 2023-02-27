@@ -1,8 +1,7 @@
 version: '3'
 services:
   senergy-bpm:
-    build: .
-    #image: camunda/camunda-bpm-platform:tomcat-7.11.0
+    image: ghcr.io/senergy-platform/process-engine:prod
     environment:
       # Set database configuration
       - DB_DRIVER=org.postgresql.Driver
