@@ -3,7 +3,8 @@ name: 'ARM prod Docker Image'
 on:
   push:
     branches:
-      - prod
+      - master
+      - main
   workflow_dispatch:
 
 jobs:
