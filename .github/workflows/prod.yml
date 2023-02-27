@@ -1,4 +1,4 @@
-name: 'ARM prod Docker Image'
+name: 'PROD Docker Image'
 
 on:
   push:
