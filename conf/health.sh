@@ -1,3 +1,5 @@
+#!/bin/sh
+
 if [[ -z "${CAMUNDA_APP_PASSWORD}" ]]; then
   curl --fail http://localhost:8080/engine-rest/incident/count
 else
