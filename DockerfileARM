@@ -32,6 +32,8 @@ RUN rm -rf /camunda/webapps/manager
 COPY conf/bpm-platform-active.xml /camunda/conf/bpm-platform.xml
 COPY conf/server.xml /camunda/conf/server.xml
 
+COPY conf/health.sh /camunda/health.sh
+RUN chmod a+x /camunda/health.sh
 
 ##### FINAL IMAGE #####
 
@@ -81,6 +83,7 @@ RUN apk add --no-cache \
         tzdata \
         tini \
         xmlstarlet \
+        curl \
     && wget -O /usr/local/bin/wait-for-it.sh \
       "https://raw.githubusercontent.com/vishnubob/wait-for-it/db049716e42767d39961e95dd9696103dca813f1/wait-for-it.sh" \
     && chmod +x /usr/local/bin/wait-for-it.sh

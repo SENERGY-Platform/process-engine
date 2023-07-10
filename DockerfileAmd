@@ -18,6 +18,7 @@ COPY conf/web.xml /camunda/conf/web_templ.xml
 COPY conf/web_without_auth.xml /camunda/conf/web_without_auth.xml
 COPY conf/logging.properties /camunda/conf/logging.properties
 COPY conf/startup.sh /camunda/senergy_startup.sh
+COPY conf/health.sh /camunda/health.sh
 
 USER root
 RUN chmod a+rw /camunda/conf/server.xml
@@ -27,6 +28,7 @@ RUN chmod a+rw /camunda/conf/web_templ.xml
 RUN chmod a+rw /camunda/conf/web_without_auth.xml
 RUN chmod a+rw /camunda/conf/logging.properties
 RUN chmod a+x /camunda/senergy_startup.sh
+RUN chmod a+x /camunda/health.sh
 USER camunda
 
 ENV JAVA_TOOL_OPTIONS="-Dlog4j.formatMsgNoLookups=true"
@@ -55,6 +57,8 @@ RUN chmod a+rw ${MAIL_CONFIG}
 RUN chmod a+rw ${MAIL_CONFIG_TEMPL}
 
 RUN ln -sf /proc/self/fd/1 /camunda/logs/camunda_access_log.txt
+
+RUN apk add curl
 
 USER camunda
 
