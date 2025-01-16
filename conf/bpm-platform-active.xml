@@ -51,6 +51,7 @@
             <property name="authorizationEnabled">true</property>
             <property name="jobExecutorDeploymentAware">false</property>
             <property name="jobExecutorActivate">true</property>
+            <property name="historyTimeToLive">P7D</property>
         </properties>
 
         <plugins>
