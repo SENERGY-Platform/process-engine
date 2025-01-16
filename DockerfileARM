@@ -1,6 +1,6 @@
 FROM arm32v7/eclipse-temurin:8 as builder
 
-ARG VERSION=7.12.0
+ARG VERSION=7.22.0
 ARG DISTRO=tomcat
 ARG SNAPSHOT=false
 
@@ -40,7 +40,7 @@ RUN chmod a+x /camunda/health.sh
 FROM openjdk:8u212-jre-alpine3.9
 
 ENV JAVA_TOOL_OPTIONS="-Dlog4j.formatMsgNoLookups=true"
-ARG VERSION=7.12.0
+ARG VERSION=7.22.0
 
 ENV CAMUNDA_VERSION=${VERSION}
 ENV DB_DRIVER=org.h2.Driver

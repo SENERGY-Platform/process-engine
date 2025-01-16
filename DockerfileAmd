@@ -1,4 +1,4 @@
-FROM camunda/camunda-bpm-platform:tomcat-7.11.0
+FROM camunda/camunda-bpm-platform:tomcat-7.22.0
 
 RUN rm -rf /camunda/webapps/ROOT
 RUN rm -rf /camunda/webapps/camunda
