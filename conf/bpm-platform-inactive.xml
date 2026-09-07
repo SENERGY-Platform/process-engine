@@ -52,6 +52,8 @@
             <property name="jobExecutorDeploymentAware">false</property>
             <property name="jobExecutorActivate">false</property>
             <property name="historyTimeToLive">P7D</property>
+            <property name="historyCleanupBatchWindowStartTime">02:00</property>
+            <property name="historyCleanupBatchWindowEndTime">05:00</property>
         </properties>
 
         <plugins>
